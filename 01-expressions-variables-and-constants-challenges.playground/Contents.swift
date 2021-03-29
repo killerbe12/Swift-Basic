@@ -36,7 +36,12 @@ import Foundation
 ### Challenge 1
  Declare a constant `exercises` with value 9 and a variable `exercisesSolved` with value 0. Increment this variable every time you solve an exercise (including this one).
  */
-// your code here
+print("Exersice #\(exercisesSolved)")
+
+let exercises: Int = 9
+var exercisesSolved: Int = 0
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
 ### Challenge 2
  Given the following code:
@@ -48,7 +53,16 @@ import Foundation
  ```
   Declare `age` so that it compiles.  Did you use `var` or `let`?
 */
-// your code here
+print("\nExersice #\(exercisesSolved)")
+
+// I am used var because let we use with constants
+var age = 16
+print(age)
+age = 30
+print(age)
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
 ### Challenge 3
  Consider the following code:
@@ -67,7 +81,25 @@ let answer2: Int = (a * 100) + (b * 100)
 let answer3: Int = (a * 100) + (b / 10)
 ```
 */
-// your code here
+print("\nExersice #\(exercisesSolved)")
+
+let a: Int = 46
+let b: Int = 10
+
+// answer1 equals 4610
+let answer1: Int = (a * 100) + b
+print("Answer 1: \(answer1)")
+
+// answer2 equals 5600
+let answer2: Int = (a * 100) + (b * 100)
+print("Answer 2: \(answer2)")
+
+// answer3 4601
+let answer3: Int = (a * 100) + (b / 10)
+print("Answer 3: \(answer3)")
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
 ### Challenge 4
  Add parentheses to the following calculation. The parentheses should show the order in which the operations are performed and should not alter the result of the calculation.
@@ -76,35 +108,82 @@ let answer3: Int = (a * 100) + (b / 10)
 /*:
  Solution:
  */
-// your code here
+print("\nExersice #\(exercisesSolved)")
+
+let result = (5 * 3) - ((4 / 2) * 2)
+
+print("Results: \(result)")
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
 ### Challenge 5
  Declare two constants `x` and `y` of type `Double` and assign both a value. Calculate the average of `x` and `y` and store the result in a constant named `average`.
  */
-// your code here
+print("\nExersice #\(exercisesSolved)")
+
+let x: Double = 1
+let y: Double = 1
+let average = (x + y) / 2
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
 ### Challenge 6
  A temperature expressed in °C can be converted to °F by multiplying by 1.8 then incrementing by 32. In this exercise, you will do the reverse: convert a temperature from °F to °C.
  
  Declare a constant named `fahrenheit` of type `Double` and assign it a value. Calculate the corresponding temperature in °C and store the result in a constant named `celcius`.
  */
-// your code here
+print("\nExersice #\(exercisesSolved)")
+
+let fahrenheit: Double = 120
+let celcius: Double = (fahrenheit - 32) / 1.8
+
+print("°F value equals: \(fahrenheit), °C value equals: \(celcius)")
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
 ### Challenge 7
  Suppose the squares on a chessboard are numbered left to right, top to bottom, with 0 being the top-left square and 63 being the bottom-right square. Rows are numbered top to bottom, 0 to 7. Columns are numbered left to right, 0 to 7.
  
  Declare a constant `position` and assign it a value between 0 and 63. Calculate the corresponding row and column numbers and store the results in constants named `row` and `column`.
  */
-// your code here
+print("\nExersice #\(exercisesSolved)")
 
+let chessboardSquare = 20
+let row = chessboardSquare / 7
+let column = chessboardSquare % 7
+let rowAndColumn = [row, column]
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
  ### Challenge 8
  A circle is made up of 2𝜋 radians, corresponding with 360 degrees. Declare a constant `degrees` of type `Double` and assign it an initial value. Calculate the corresponding angle in radians and store the result in a constant named `radians`.
  */
-// your code here
+print("\nExersice #\(exercisesSolved)")
 
+let degrees: Double = 125
+let radians: Double = (degrees * 2 * 3.14) / 360
+
+print("° value equals: \(degrees), Radians value equals: \(radians)")
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")
 /*:
 ### Challenge 9
  Declare four constants named `x1`, `y1`, `x2` and `y2` of type `Double`. These constants represent the 2-dimensional coordinates of two points. Calculate the distance between these two points and store the result in a constant named `distance`.
  */
-// your code here
+print("\nExersice #\(exercisesSolved)")
+
+let x1: Double = 1
+let y1: Double = 7
+let x2: Double = 3
+let y2: Double = 5
+
+let distance = (pow(x2 - x1, 2) + pow(y2 - y1, 2)).squareRoot()
+print("Distance equals: \(distance)")
+
+exercisesSolved += 1
+print("Soleved exercises: \(exercisesSolved)")

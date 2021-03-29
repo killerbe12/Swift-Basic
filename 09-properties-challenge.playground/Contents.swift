@@ -41,8 +41,17 @@
  2. Lazily initialize the `ingredients` array.
 
  */
-// your code here
-
+struct IceCream {
+    lazy var name: String = {
+       let name = ""
+        return name
+    }()
+    
+    lazy var ingredients: [String] = {
+       let ingredients = [String]()
+        return ingredients
+    }()
+}
 /*:
  ## Challenge 2
  
@@ -61,18 +70,33 @@
  5. Add a `FuelTank` property to `Car`.
  */
 struct FuelTank {
+    var lowFuel: Bool = true {
+        didSet {
+            print(lowFuel ? "True.Empty" : "False.Full")
+        }
+    }
     
-    var lowFuel: Bool
-    var level: Double // decimal percentage between 0 and 1
-
+    // Decimal percentage between 0 and 1
+    var level: Double = 0 {
+        didSet {
+            if level < 0 {
+                level = 0
+            } else if level > 1 {
+                level = 1
+            }
+            
+            lowFuel = level < 0.1
+        }
+    }
 }
 
 struct Car {
     let make: String
     let color: String
+    var tank: FuelTank
 }
 
 
-//var car = Car(make: "Delorian", color: "Silver", tank: FuelTank(lowFuel: false, level: 1))
-//car.tank.level = -1 // level: 0, lowFuel: true
-//car.tank.level = 1.1 // level: 1, lowFuel: false
+var car = Car(make: "Delorian", color: "Silver", tank: FuelTank(lowFuel: false, level: 1))
+car.tank.level = -1  // level: 0, lowFuel: true
+car.tank.level = 1.1 // level: 1, lowFuel: false

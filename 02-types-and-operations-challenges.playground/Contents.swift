@@ -35,50 +35,43 @@ import Foundation
  ### Challenge 1
  Create a constant called `coordinates` and assign a tuple containing `2` and `3` to it.
  */
-// your code is here
-
+let coordinates: (Int, Int) = (2, 3)
 /*:
  ## Types and Operations
  ### Challenge 2
  Create a constant called `namedCoordinate` with a `row` and `column` component of 2 and 3.
  */
-// your code is here
-
+let namedCoordinate = (row: 2, column: 3)
 /*:
  ### Challenge 3
  Which of the following are valid statements?
 */
-//let character: Character = "Dog" // your answer is here
-//let character: Character = "🐶" // your answer is here
-//let string: String = "Dog" // your answer is here
-//let string: String = "🐶" // your answer is here
-
+//let character: Character = "Dog" // Not valid statement
+//let character: Character = "🐶" // Valid statement
+//let string: String = "Dog" // Valid statement
+//let string: String = "🐶" // Valid statement
 /*:
  ### Challenge 4
  Is this valid code?
 */
 let tuple = (day: 15, month: 8, year: 2015)
-//let day = tuple.Day // your answer is here
-
+//let day = tuple.Day // This code is not valid because "Day" starts with upper case character
 /*:
  ### Challenge 5
  What is wrong with the following code?
 */
 let name = "Matt"
-//name += " Galloway" // your answer is here
-
+//name += " Galloway" // Here we try to rewrite constant value thats why we have wrong code
 /*:
  ### Challenge 6
  What is the type of the constant called `value`?
  */
-let value = tuple.1 // value = your answer is here
-
+let value = tuple.1 // value = Int, thats why typle.1 is integer number
 /*:
  ### Challenge 7
  What is the value of the constant called `month`?
 */
-let month = tuple.month // month = your answer is here
-
+let month = tuple.month // month = 8, We just cope value from tuple.month
 /*:
  ### Challenge 8
  What is the value of the constant called `summary`?
@@ -86,8 +79,7 @@ let month = tuple.month // month = your answer is here
 let number = 10
 let multiplier = 5
 let summary = "\(number) multiplied by \(multiplier) equals \(number * multiplier)"
-// summary = your answer is here
-
+//summary = "10 multiplied by 5 equals 50"
 /*:
  ### Challenge 9
   What is the sum of `a` and `b`, minus `c`?
@@ -95,16 +87,16 @@ let summary = "\(number) multiplied by \(multiplier) equals \(number * multiplie
 let a = 4
 let b: Int32 = 100
 let c: UInt8 = 12
-// let answer = your code is here
-
+//let answer = We can't get sum of  different types, here trouble with UInt8
 /*:
  ### Challenge 10
  What is the difference between `Double.pi` and `Float.pi`?
  */
 let difference = Double.pi - Double(Float.pi)
 
-// Float is a little less accurate so it makes sense to promote it to
-// a Double. Double is more accurate but it is not exact! That 
-// would require an infinite number of bits. :]
+//Float is a little less accurate so it makes sense to promote it to
+//a Double. Double is more accurate but it is not exact! That
+//would require an infinite number of bits. :]
 //
-// 1.50995798975373e-07, or 0.000000150995798975373
+//1.50995798975373e-07, or 0.000000150995798975373
+//Answer: 1.5099579897537296e-07

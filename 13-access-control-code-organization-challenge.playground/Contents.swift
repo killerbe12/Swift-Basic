@@ -33,9 +33,26 @@
  - Not be able to be instantiated by consuming code.
  - Have a method log() that will print a string to the console.
  */
+import XCTest
 
-// your code here
+class Logger {
+    private init() { }
+    
+    func stringLogger() -> String {
+        return "Singleton"
+    }
+    
+    static var shared: Logger = {
+        let instance = Logger()
+        return instance
+    }()
+}
 
+extension Logger: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        return self
+    }
+}
 /*:
  ### Challenge 2: Stack
 Declare a generic type Stack. A stack is a LIFO (last-in-first-out) data structure that supports the following operations:
@@ -46,8 +63,25 @@ empty.
 - count: returns the size of the stack.
 Ensure that these operations are the only exposed interface. In other words, additional properties or methods needed to implement the type should not be visible.
  */
-// your code here
-
+struct Stack<Element> {
+    var items = [Element]()
+    
+    mutating func push(_ item: Element) {
+        items.append(item)
+    }
+    
+    func peek() -> Element? {
+        return items.last ?? nil
+    }
+    
+    mutating func count(_ item: Element) -> Int {
+        return items.count
+    }
+    
+    mutating func pop() -> Element? {
+        return items.popLast()
+    }
+}
 /*:
  ### Challenge 3: Character battle
 Utilize something called a static factory method to create a game of Wizards vs. Elves vs. Giants.
@@ -75,4 +109,12 @@ battle(wizard, vs: giant) // Giant defeated!
 battle(wizard, vs: elf) // Elf defeated!
  ```
  */
-// your code here
+import PlaygroundSupport
+
+var elf = GameCharacterFactory.make(ofType: .elf)
+var giant = GameCharacterFactory.make(ofType: .giant)
+var wizard = GameCharacterFactory.make(ofType: .wizard)
+
+battle(&elf, vs: &giant)    // Giant defeated!
+battle(&wizard, vs: &giant) // Giant defeated!
+battle(&wizard, vs: &elf)   // Elf defeated!

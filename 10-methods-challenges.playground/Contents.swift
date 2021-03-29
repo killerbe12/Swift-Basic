@@ -32,17 +32,37 @@
  
  Add type methods to your `Math` namespace called `isEven` and `isOdd` that return true if a number is even or odd respectively.
  */
+
 struct Math {}
 
-// your code here
+extension Math {
+    static func isEven(num: Int) -> Bool {
+        return num % 2 == 0
+    }
+    static func isOdd(num: Int) -> Bool {
+        return num % 2 != 0
+    }
+}
 
 /*:
  ### Challenge 2
  It turns out that `Int` is just a struct.  Add the computed properties `isEven` and `isOdd` to `Int` using an extension.
  */
-//your code here
+
+extension Int {
+    static func isEven(num: Int) -> Bool {
+        return num % 2 == 0
+    }
+    static func isOdd(num: Int) -> Bool {
+        return num % 2 != 0
+    }
+}
+
 /*:
  ### Challenge 3
 Add the method `primeFactors()` to `Int`. Since this is an expensive operation, this is best left as an actual method.
 */
-// your code here
+
+extension Int {
+    func primeFactors() {}
+}

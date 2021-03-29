@@ -27,6 +27,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+import Foundation
 /*:
  ## Collection Iteration with Closures
  ### Challenge 1: Repeating yourself
@@ -43,7 +45,11 @@
  
  Use this function to print `"Swift Apprentice is a great book!"` 10 times.
  */
-// your code here
+func repeatTask(times: Int, task: () -> Void) {
+    for _ in 0..<times {
+        task()
+    }
+}
 /*:
  ### Challenge 2: Closure sums
  
@@ -61,7 +67,35 @@
  
  Use the function to find the sum of the first 10 square numbers, which equals 385. Then use the function to find the sum of the first 10 Fibonacci numbers, which equals 143. For the Fibonacci numbers, you can use the function you wrote in the functions chapter — or grab it from the solutions if you’re unsure your solution is correct.
  */
-// your code here
+let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+extension Decimal {
+    var int: Int {
+        return NSDecimalNumber(decimal: self).intValue
+    }
+}
+
+func mathSum(length: Int, series: (Int) -> Int) -> Int {
+    var summary = 0
+    for i in 0..<length {
+        summary += series(i)
+    }
+    return summary
+}
+
+print(mathSum(length: array.count, series: { (index) -> Int in
+    pow(Decimal(array[index]), 2).int
+}))
+
+let fibonacci = sequence(first: (1, 1), next: { ($1, $0 + $1) })
+    .prefix(10)
+    .map { $0.0 }
+
+print(fibonacci)
+
+print(mathSum(length: fibonacci.count, series: { (index) -> Int in
+    fibonacci[index]
+}))
 /*:
  ### Challenge 3: Functional ratings
  
@@ -81,4 +115,23 @@
  
  Finally, use `filter` and `map` chained together to get a list of the app names whose average rating is greater than 3.
  */
-// your code here
+var appRatings = [
+  "Calendar Pro": [1, 5, 5, 4, 2, 1, 5, 4],
+  "The Messenger": [5, 4, 2, 5, 4, 1, 1, 2],
+  "Socialise": [2, 1, 2, 2, 1, 2, 4, 2]
+]
+
+var averageRatings: [String: Int] = [:]
+
+appRatings.forEach {(key, value) in appRatings
+    averageRatings[key] = value.reduce(0, { x, y in
+        x + y
+    }) / value.count
+}
+
+averageRatings.map {
+    guard $0.value >= 3 else {
+        return
+    }
+    print($0.key)
+}

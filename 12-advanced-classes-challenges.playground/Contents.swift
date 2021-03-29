@@ -25,9 +25,6 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
-
-
 /*:
  ## Advanced Classes
  ### Challenge 1
@@ -36,14 +33,52 @@
  ### Challenge 2
   Implement `deinit` for each class. Place your `c` inside of a `do { }` scope which will cause the reference count to go to zero when it exits the scope. What order are the classes deinitialized in?
  */
+class A {
+    init() {
+        print("I'm - A!")
+    }
+    deinit {
+        print("Deinit - A")
+    }
+}
 
-// your code here for both Challenage 1 and Challenge 2
+class B: A {
+    override init() {
+        print("I'm - B before!")
+        super.init()
+        print("I'm - B!")
+    }
+    
+    deinit {
+        print("Deinit - B")
+    }
+}
 
+class C: B {
+    override init() {
+        print("I'm - C before!")
+        super.init()
+        print("I'm - C!")
+    }
+    
+    deinit {
+        print("Deinit - C")
+    }
+}
+
+C()
+
+// I'm - C before!
+// I'm - B before!
+// I'm - A!
+// I'm - B!
+// I'm - C!
+// Deinit - C
+// Deinit - B
+// Deinit - A
 /*:
  ### Challenge 3
  Cast the instance of type `C` to an instance of type `A`. Which casting operation do you use and why?
  */
-
-// your code here
-
-
+// Because "as" using to casting instance classes
+print(((C() as? A) != nil) ? "is A" : "Not A")

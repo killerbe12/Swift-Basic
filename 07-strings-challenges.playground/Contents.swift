@@ -41,8 +41,19 @@ import Foundation
  For bonus points, print them ordered by the count of each character.
  */
 
-// your code here
-
+//var text = "Duck duck go!!"
+//
+//print(occurrencesOfCharacters(in: text))
+//
+//func occurrencesOfCharacters(in text: String) -> [Character: Int] {
+//    var occurrences = [Character: Int]()
+//
+//    for char in text {
+//        occurrences[char, default: 0] += 1
+//    }
+//
+//    return occurrences
+//}
 
 /*:
  ### Challenge 2
@@ -51,4 +62,6 @@ import Foundation
  Hint: try iterating through the string yourself.
  */
 
-// your code here
+//let string = "Hi, duck!"
+//let array = string.components(separatedBy: " ")
+//print(array.count)

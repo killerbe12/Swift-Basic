@@ -38,11 +38,14 @@ import Foundation
  * Ships should also be modelled with structures. Record an origin, direction and length.
  * Each ship should be able to report if a “shot” has resulted in a “hit”.
 */
-
 typealias Direction = String
 let Right: Direction = "Right"
 let Down: Direction = "Down"
 
+//enum Direction: String {
+//    case right = "Right"
+//    case down = "Down"
+//}
 
 struct Coordinate {
   let x: Int
@@ -50,36 +53,65 @@ struct Coordinate {
 }
 
 struct Ship {
-//your code here
+    let origin: Coordinate
+    let direction: Direction
+    let length: Int
+    let name: String
 }
 
 struct Board {
-//your code here
+    var ships: [Ship] = []
 }
-
 /*:
  Set up ships.
  */
-
-//let patrolBoat = Ship(origin: Coordinate(x: 2, y: 2), direction: Right, length: 2)
-//let battleship = Ship(origin: Coordinate(x: 5, y: 3), direction: Down, length: 4)
-//let submarine = Ship(origin: Coordinate(x: 0, y: 0), direction: Down, length: 3)
-
+let patrolBoat = Ship(origin: Coordinate(x: 2, y: 2), direction: Right, length: 2, name: "PatrolBoat")
+let battleship = Ship(origin: Coordinate(x: 5, y: 3), direction: Down, length: 4, name: "Battleship")
+let submarine = Ship(origin: Coordinate(x: 0, y: 0), direction: Down, length: 3, name: "Submarine")
 /*:
   Set up the board.
   */
-
-//var board = Board()
-//board.ships.append(contentsOf: [patrolBoat, battleship, submarine])
-
+var board = Board()
+board.ships.append(contentsOf: [patrolBoat, battleship, submarine])
 /*:
  Play the game.
  */
+extension Ship {
+    func getAllAvailableCoordinates() -> [Coordinate] {
+        var allCoordinates = [Coordinate]()
+        allCoordinates.append(origin)
+        
+        if length > 1 {
+            for i in 1..<length {
+                switch direction {
+                case Right:
+                    allCoordinates.append(Coordinate(x: origin.x + i, y: origin.y))
+                case Down:
+                    allCoordinates.append(Coordinate(x: origin.x, y: origin.y + i))
+                default:
+                    print("Error")
+                }
+            }
+        }
+        return allCoordinates
+    }
+}
 
-//board.fire(location: Coordinate(x: 2, y: 2)) // Hit on the patrolBoat
-//
-//board.fire(location: Coordinate(x: 2, y: 3)) // Miss...
-//
-//board.fire(location: Coordinate(x: 5, y: 6)) // Hit on the battleship
-//
-//board.fire(location: Coordinate(x: 5, y: 7)) // Miss...
+extension Board {
+    func fire(location: Coordinate) -> String {
+        for ship in ships {
+            if ship.getAllAvailableCoordinates().contains(where: { $0.x == location.x && $0.y == location.y }) {
+                return "Hit on the \(ship.name)"
+            }
+        }
+        return "Miss..."
+    }
+}
+    
+board.fire(location: Coordinate(x: 2, y: 2)) // Hit on the patrolBoat
+
+board.fire(location: Coordinate(x: 2, y: 3)) // Miss...
+
+board.fire(location: Coordinate(x: 5, y: 6)) // Hit on the battleship
+
+board.fire(location: Coordinate(x: 5, y: 7)) // Miss...

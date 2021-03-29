@@ -46,49 +46,98 @@ import Foundation
  let fullName = firstName + " " + lastName
  ```
  */
-// your answer is here
+// Constant named lastName init in {} thats why fullName have no permissions to this contant, if we want change data of lastName we should use var.
 // A correct solution:
-// your code is here
+let firstName = "Matt"
+var lastName: String = ""
+
+if firstName == "Matt" {
+  lastName = "Galloway"
+} else if firstName == "Ray" {
+  lastName = "Wenderlich"
+}
+
+let fullName = firstName + " " + lastName
 /*:
  ### Challenge 2
  In each of the following statements, what is the value of the Boolean `answer` constant?
  */
-
 //let answer1 = true && true
-// your answer is here
+// True
 
 //let answer2 = false || false
-// your answer is here
+// Fasle
 
 //let answer3 = (true && 1 != 2) || (4 > 3 && 100 < 1)
-// your answer is here
+// True
 
 //let answer4 = ((10 / 2) > 3) && ((10 % 2) == 0)
-// your answer is here
-
+// True
 /*: 
  ### Challenge 3
  Given the coefficients a, b and c, calculate the solutions to a quadratic equation with these coefficients. Take into account the different number of solutions (0, 1 or 2). If you need a math refresher, this Wikipedia article on the quadratic equation will help [https://en.wikipedia.org/wiki/Quadratic_formula](https://en.wikipedia.org/wiki/Quadratic_formula).
  */
-// a*x^2 + b*x + c = 0
-// x = ?
-
+//a*x^2 + b*x + c = 0
+//x = ?
 let a = 1.0
 let b = -5.0
 let c = 6.0
 
-// your code is here
+let discr = pow(b, 2) - (4 * a * c)
+let lessZero = discr < 0
+let discrAbsSqrt = sqrt(fabs(discr))
 
+if lessZero {
+    print("Solution: (\(-b) + \(discrAbsSqrt)i)/\(2*a) & (\(-b) - \(discrAbsSqrt)i)/\(2*a)")
+} else {
+    let x1 = (-b + (pow(b, 2) - 4 * a * c ).squareRoot()) / (2 * a)
+    let x2 = (-b - (pow(b, 2) - 4 * a * c ).squareRoot()) / (2 * a)
+    print("Solution #1: \(x1), Solution #2: \(x2)")
+}
 /*:
  ### Challenge 4
  Given a month (represented with a `String` in all lowercase) and the current year (represented with an `Int`), calculate the number of days in the month. Remember that because of leap years, "february" has 29 days when the year is a multiple of 4 but not a multiple of 100.  February also has 29 days when the year is a multiple of 400.
  */
 // monthes: january, february, march, april, may, june, july, august, september, october, november, december
 let month = "february"
-let year = 2016
+let year = 2021
 
-// your code is here
+func daysCalculating(month: Int, year: Int){
+    let dateComponents = DateComponents(year: year, month: month)
+    let calendar = Calendar.current
+    let date = calendar.date(from: dateComponents)!
+    
+    let range = calendar.range(of: .day, in: .month, for: date)!
+    let numDays = range.count
+    print(numDays)
+}
 
+switch month {
+case "january":
+    daysCalculating(month: 1, year: year)
+case "february":
+    daysCalculating(month: 2, year: year)
+case "march":
+    daysCalculating(month: 3, year: year)
+case "april":
+    daysCalculating(month: 4, year: year)
+case "may":
+    daysCalculating(month: 5, year: year)
+case "june":
+    daysCalculating(month: 6, year: year)
+case "july":
+    daysCalculating(month: 7, year: year)
+case "august":
+    daysCalculating(month: 8, year: year)
+case "september":
+    daysCalculating(month: 9, year: year)
+case "october":
+    daysCalculating(month: 10, year: year)
+case "november":
+    daysCalculating(month: 11, year: year)
+default:
+    daysCalculating(month: 12, year: year)
+}
 /*:
  ### Challenge 5
  
@@ -102,9 +151,7 @@ let year = 2016
  ```
  What will be the value of `sum`, and how many iterations will happen?
  */
-
-// sum = you answer here
-
+// sum = 15, 6 iterations
 /*:
  ### Challenge 6
  
@@ -117,9 +164,7 @@ let year = 2016
  ````
  How many instances of the character “a” will there be in `aLotOfAs`? Hint: `aLotOfAs.count` will tell you how many characters there are in the string `aLotOfAs`.
  */
-
-// aLotOfAs contains <your answer is here>
-
+// aLotOfAs contains <aaaaaaaaaa>, 10 letters "a"
 /*:
  ### Challenge 7
  Consider the following switch statement:
@@ -148,21 +193,16 @@ let year = 2016
  let coordinates = (0, 2, 4)
  ```
  */
-let coordinates = (1, 5, 0)
-// your answer is here
-
+//let coordinates = (1, 5, 0)
+// On the x/y plane
 //let coordinates = (2, 2, 2)
-// your answer is here
-
+// x = y = z
 //let coordinates = (3, 0, 1)
-// your answer is here
-
+// On the x/z plane
 //let coordinates = (3, 2, 5)
-// your answer is here
-
+// Nothing special
 //let coordinates = (0, 2, 4)
-// your answer is here
-
+// On the y/z plane
 //switch coordinates {
 //case let (x, y, z) where x == y && y == z:
 //    print("x = y = z")
@@ -175,25 +215,44 @@ let coordinates = (1, 5, 0)
 //default:
 //    print("Nothing special")
 //}
-
 /*:
  ### Challenge 8
  Declare a closed range and half-open range.
  */
-// your code is here
+let valueClosed = 0...5
+let valueHalf = 0...
 /*:
  A closed range can never be empty. Why?
  */
-// your answer is here
-
+// A Closed Range contains lower bound and upper bound. Thats why if we use 0...0 it still contains one element 0
 /*:
  ### Challenge 9
  Print a countdown from 10 to 0.  (Note: do not use the `reversed()` method, which will be introduced later.)
  */
-// your code is here
+// Version #1
+//let numbers = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+//for i in numbers {
+//    print(i)
+//}
+// Version #2
+//var value = 10
+//while true {
+//    print(value)
+//    value -= 1
+//    if value < 0 {
+//        break
+//    }
+//}
 /*:
  ### Challenge 10
  
  Print 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0.  (Note: do not use the `stride(from:to:by:)` function, which will be introduced later.)
  */
-// your code is here
+//var value = 0.0
+//while true {
+//    print(Double(round(1000*value)/1000))
+//    value += 0.1
+//    if value > 1 {
+//        break
+//    }
+//}

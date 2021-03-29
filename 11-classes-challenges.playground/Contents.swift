@@ -38,11 +38,49 @@
  - `List` - Contains a name and an array of movie titles. A `print` method will print all the movies in the list.
  - Create `jane` and `john` users and have them create and share lists. Have both `jane` and `john` modify the same list and call `print` from both users. Are all the changes reflected?
 */
+class User {
+    var listMovies: [String: List] = [:]
 
-// your code here
+    func addList(_ list: List) {
+        listMovies[list.name] = list
+    }
+    
+    func list(forName name: String) -> List? {
+        return listMovies[name]
+    }
+}
 
+class List {
+    let name: String
+    var movies: [String]
+    
+    init(name: String, _ movies: [String] = []) {
+        self.name = name
+        self.movies = movies
+    }
+    
+    func print() {
+        Swift.print("List \(name):\n\(movies)")
+    }
+}
+
+let jane = User()
+let john = User()
+var movies = ["Tom","Jerry"]
+var userList = List(name: "1", movies)
+
+jane.addList(userList)
+john.addList(userList)
+
+jane.listMovies[userList.name]?.print()
+john.listMovies[userList.name]?.print()
+
+jane.list(forName: userList.name)?.movies.append("New movie")
+
+jane.listMovies[userList.name]?.print()
+john.listMovies[userList.name]?.print()
 /*:
  
  What happens when you implement the same with structs and what problems do you run into?
  */
-// your answer here
+// Classes have reference semantics, and structures have value type. They are copied, not linked. Therefore, if we were to use structures, after the list of John's films, only the list of John's films would change, so with Jane.

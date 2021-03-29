@@ -41,11 +41,10 @@
  var middleName: String? = nil
  ```
 */
-//var name: String? = "Ray"     // your answer here
-//var age: Int = nil            // your answer here
-//let distance: Float = 26.7    // your answer here
-//var middleName: String? = nil // your answer here
-
+//var name: String? = "Ray"     // Valid statement
+//var age: Int = nil            // Not valid statement
+//let distance: Float = 26.7    // Valid statement
+//var middleName: String? = nil // Valid statement
 /*:
  ### Challenge 2: Nested optionals
  
@@ -69,4 +68,16 @@
  2. Optionally bind and print `number` with if let.
  3. Write a function `printNumber(_ number: Int???)` that uses `guard` to print the number only if it is bound.
  */
-// your code here
+let number: Int??? = 10
+print(number!!!)
+
+if let value = number {
+    print(value!!)
+}
+
+func printNumber(_ number: Int???) {
+    guard number != nil else { return }
+    print(number!!!)
+}
+
+printNumber(number)

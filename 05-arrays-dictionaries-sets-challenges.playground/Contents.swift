@@ -33,33 +33,27 @@
  ### Challenge 1.
  Which of the following are valid statements?
 */
- 
-//let array1 = [Int]()      // your answer here
-//let array2 = []           // your answer here
-//let array3: [String] = [] // your answer here
-
+//let array1 = [Int]()      // Valid statement
+//let array2 = []           // Not valid statement
+//let array3: [String] = [] // Valid statement
 //: Given:
 let array4 = [1, 2, 3]
 
 //: Which of the following five statements are valid
-
-//print(array4[0])  // your answer here
-//print(array4[5])  // your answer here
-//array4[1...2]     // your answer here
-//array4[0] = 4     // your answer here
-//array4.append(4)  // your answer here
-
+//print(array4[0])  // Valid statement
+//print(array4[5])  // Not valid statement
+//array4[1...2]     // Valid statement
+//array4[0] = 4     // Not valid statement
+//array4.append(4)  // Not valid statement
 //: Given:
 var array5 = [1, 2, 3]
 
 //: Which of the five statements are valid?
-
-//array5[0] = array5[1]                 // your answer here
-//array5[0...1] = [4, 5]                // your answer here
-//array5[0] = "Six"                     // your answer here
-//array5 += 6                           // your answer here
-//for item in array5 { print(item) }    // your answer here
-
+//array5[0] = array5[1]                 // Valid statement
+//array5[0...1] = [4, 5]                // Valid statement
+//array5[0] = "Six"                     // Not valid statement
+//array5 += 6                           // Not valid statement
+//for item in array5 { print(item) }    // Valid statement
 /*:
  ### Challenge 2
  Write a function that removes the first occurrence of a given integer from an array of integers.
@@ -69,8 +63,19 @@ var array5 = [1, 2, 3]
  func removingOnce(_ item: Int, from array: [Int]) -> [Int]
  ```
 */
+func removingOnce(_ item: Int, from array: [Int]) -> [Int] {
+    var tempArray = array
+    
+    for i in 0..<tempArray.count {
+        if tempArray[i] == item {
+            tempArray.remove(at: i)
+            break
+        }
+    }
+    return tempArray
+}
 
-// your code here
+//print(removingOnce(2, from: [3, 4, 6, 2, 7, 0 ,9]))
 /*:
  ### Challenge 3
  Write a function that removes all occurrences of a given integer from an array of integers. 
@@ -80,9 +85,23 @@ var array5 = [1, 2, 3]
  func removing(_ item: Int, from array: [Int]) -> [Int]
 ```
 */
+func removing(_ item: Int, from array: [Int]) -> [Int] {
+    var tempArray = array
+    var index = 0;
+    
+    while index < tempArray.count {
+        if tempArray[index] == item {
+            tempArray.remove(at: index)
+            guard index > 0 else { continue }
+            index -= 1
+            continue
+        }
+        index += 1
+    }
+    return tempArray
+}
 
-// your code here
-
+//print(removing(2, from: [2, 2, 3, 4, 6, 2, 7, 0, 2, 9, 2, 2]))
 /*:
  ### Challenge 4
  Arrays have a `reversed()` method that returns an array holding the same elements as the original array, in reverse order. 
@@ -92,9 +111,19 @@ var array5 = [1, 2, 3]
  func reversed(_ array: [Int]) -> [Int]
  ```
 */
+func reversed(_ array: [Int]) -> [Int] {
+    var tempArray = [Int]()
+    var reverseIndex = array.count-1
+    
+    while reverseIndex > -1 {
+        tempArray.append(array[reverseIndex])
+        reverseIndex -= 1
+    }
+    
+    return tempArray
+}
 
-// your code here
-
+//print(reversed([1, 2, 3, 4, 5, 6, 7]))
 /*:
  ### Challenge 5
  Write a function that returns the middle element of an array.
@@ -104,9 +133,20 @@ var array5 = [1, 2, 3]
  func middle(_ array: [Int]) -> Int?
  ```
 */
+func middle(_ array: [Int]) -> Int? {
+    guard array.count > 0 else { return nil }
 
-// your code here
+    var middleNumber = 0
+    if array.count % 2 == 1 {
+        middleNumber = array.count / 2
+    } else {
+        middleNumber = array.count / 2 - 1
+    }
+    
+    return array[middleNumber]
+}
 
+//print(middle([5, 8, 0]))
 /*:
  ### Challenge 6
  
@@ -121,42 +161,65 @@ func minMax(of numbers: [Int]) -> (min: Int, max: Int)?
 ```
  
  */
-// your code here
+func minMax(of numbers: [Int]) -> (min: Int, max: Int)? {
+    guard numbers.count > 0 else { return nil }
+    
+    var minimalValue = numbers[0]
+    var maximumValue = numbers[0]
+        
+    for i in 0..<numbers.count {
+        if numbers[i] > maximumValue {
+            maximumValue = numbers[i]
+        } else if numbers[i] < minimalValue {
+            minimalValue = numbers[i]
+        }
+    }
+    
+    return (minimalValue, maximumValue)
+}
+
+//print(minMax(of: [-89, 98]))
 /*:
  ## Dictionaries
  ### Challenge 7
  Which of the following statements are valid?
  */
-
-//let dict1: [Int, Int] = [:]   // your answer here
-//let dict2 = [:]               // your answer here
-//let dict3: [Int: Int] = [:]   // your answer here
-
+//let dict1: [Int, Int] = [:]   // Not valid statement
+//let dict2 = [:]               // Not valid statement
+//let dict3: [Int: Int] = [:]   // Valid statement
 //: Given
 let dict4 = ["One": 1, "Two": 2, "Three": 3]
 //: Which of the following are valid:
-
-//dict4[1]          // your answer here
-//dict4["One"]      // your answer here
-//dict4["Zero"] = 0 // your answer here
-//dict4[0] = "Zero" // your answer here
-
+//dict4[1]          // Not valid statement
+//dict4["One"]      // Valid statement
+//dict4["Zero"] = 0 // Not valid statement
+//dict4[0] = "Zero" // Not valid statement
 //: Given
 var dict5 = ["NY": "New York", "CA": "California"]
 
 //: Which of the following are valid?
-//dict5["NY"]                   // your answer here
-//dict5["WA"] = "Washington"    // your answer here
-//dict5["CA"] = nil             // your answer here
-
-
+dict5["NY"]                   // Valid statement
+dict5["WA"] = "Washington"    // Valid statement
+dict5["CA"] = nil             // Valid statement
 /*:
  ### Challenge 8
  Given a dictionary with 2-letter state codes as keys and the full state name as values, write a function that prints all the states whose name is longer than 8 characters. For example, for this dictionary ["NY": "New York", "CA": "California"] the output would be "California".
  */
+var dictionary = ["NY": "New York", "CA": "California"]
 
-// your code here
+func longerEight(dict: [String: String]) -> [String] {
+    var wordsLongerEight = [String]()
+    
+    for i in dict {
+        if i.value.count > 8 {
+            wordsLongerEight.append(i.value)
+        }
+    }
+    
+    return wordsLongerEight
+}
 
+//print(longerEight(dict: dictionary))
 /*:
  ### Challenge 9
  Write a function that combines two dictionaries into one. If a certain key appears in both dictionaries, ignore the pair from the first dictionary.
@@ -165,9 +228,19 @@ var dict5 = ["NY": "New York", "CA": "California"]
  func combine(dict1: [String: String], with dict2: [String: String]) -> [String: String]
  ```
  */
+var dictUS = ["NY": "New York", "CA": "California", "SPB": "Saint-Petersburg 1", "MSK": "Moskow 1"]
+var dictSNG = ["GNA": "Grodno", "MSK": "Moskow 2", "SPB": "Saint-Petersburg 2"]
 
-// your code here
+func combine(dict1: [String: String], with dict2: [String: String]) -> [String: String]{
+    var dict: [String: String] = [:]
+    
+    dict.merge(dict1) { (current, _) in current }
+    dict.merge(dict2) { (_, new) in new }
+    
+    return dict
+}
 
+//print(combine(dict1: dictUS, with: dictSNG))
 /*:
  ### Challenge 10
  Declare a function `occurrencesOfCharacters` that calculates which characters occur in a string, as well as how often each of these characters occur.
@@ -177,8 +250,6 @@ var dict5 = ["NY": "New York", "CA": "California"]
  ```
  Hint: `String` is a collection of characters that you can iterate over with a for statement.
 */
-
-// your answer here
 /*
  Bonus: To make your code shorter, dictionaries have a special subscript operator that let you add a default value if it is not found in the dictionary. For example, dictionary["a", default: 0] creates a 0 entry for the character "a" if it is not found instead of returning nil.
 */
@@ -190,7 +261,6 @@ var dict5 = ["NY": "New York", "CA": "California"]
 //  }
 //  return occurrences
 //}
-
 /*:
  ### Challenge 11
  Write a function that returns true if all of the values of a dictionary are unique.  Use a set to test uniqueness.
@@ -199,5 +269,19 @@ var dict5 = ["NY": "New York", "CA": "California"]
  func isInvertible(_ dictionary: [String: Int]) -> Bool
  ```
  */
-// your code here
+func isInvertible(_ dictionary: [String: Int]) -> Bool {
+    var boolean = true
+    
+    for i in dictionary {
+        for j in dictionary {
+            if i.key != j.key && i.value == j.value {
+                boolean = false
+                break
+            }
+        }
+    }
+    
+    return boolean
+}
 
+//print(isInvertible(["GNA": 1, "MSK": 2, "NY": 0, "CA": 3]))

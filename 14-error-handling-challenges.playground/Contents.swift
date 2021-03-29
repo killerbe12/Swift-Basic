@@ -36,20 +36,55 @@ enum NumberError: Error {
   case notANumber
 }
 
-// your code here
+func getInt(_ string:String) throws -> Int {
+    guard let result = Int(string) else { throw NumberError.notANumber }
+    return result
+}
+
+print(try getInt("1"))
 
 /*:
  ### Challenge 2
  Write a throwing function that divides two given numbers.
  */
+
 enum DivisionError: Error {
   case divisionByZero
 }
 
-// your code here
+func divideNumbers(_ x: Int,_ y: Int) throws -> Int {
+    guard x != 0, y != 0 else {
+        throw DivisionError.divisionByZero
+    }
+    return x / y
+}
+
+print(try divideNumbers(6, 2))
 
 /*:
  ### Challenge 3
  Write a throwing function that divides two given numbers passed as `String`. Handle different kinds of error from previous challenges
  */
-// your code here
+
+enum requirements: Error {
+    case errorNumber
+    case divisionByZero
+}
+
+func divideNumbers(_ x: String,_ y: String) throws -> Int {
+    guard !x.isEmpty, !y.isEmpty else {
+        throw requirements.errorNumber
+    }
+    
+    guard let x = Int(x), let y = Int(y), x != 0, y != 0 else {
+        throw requirements.divisionByZero
+    }
+    
+    return x / y
+}
+
+do {
+    print(try divideNumbers("6", "2"))
+} catch requirements.errorNumber {
+    print("Falure")
+}
